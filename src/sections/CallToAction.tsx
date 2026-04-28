@@ -1,44 +1,30 @@
-"use client";
-import { useRef } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-
-import helixImage from "@/assets/images/helix2.png";
-import emojiStarImage from "@/assets/images/emojistar.png";
-
 export const CallToAction = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end end"],
-  });
-
-  const translateY = useTransform(scrollYProgress, [0, 1], [40, -40]);
-
   return (
-    <section ref={sectionRef} className="bg-black text-white py-[72px] md:py-24 text-center">
-      <div className="container max-w-xl relative">
-        <motion.div
-          style={{
-            translateY
-          }}
-        >
-          <Image src={helixImage} alt="" className="absolute top-6 left-[calc(100%+36px)]" />
-        </motion.div>
-        <motion.div
-          style={{
-            translateY
-          }}
-        >
-          <Image src={emojiStarImage} alt="" className="absolute -top-[120px] right-[calc(100%+24px)]" />
-        </motion.div>
-        <h2 className="text-5xl md:text-6xl font-bold tracking-tighter">Get instant access</h2>
-        <p className="text-xl text-white/70 mt-5">Celebrate the joy of accomplishment with an app designed to track your progress and motivate your efforts.</p>
-        <form className="mt-10 flex flex-col gap-2.5 max-w-sm mx-auto md:flex-row">
-          <input type="email" placeholder="your@email.com" className="h-12 bg-white/20 rounded-lg px-5 font-medium placeholder:text-[#9ca3af] md:flex-1" />
-          <button type="submit" className="bg-white text-black h-12 rounded-lg px-5">Get access</button>
-        </form>
+    <section className="bg-black py-[72px] text-white md:py-24">
+      <div className="container">
+        <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(135deg,rgba(10,10,10,1),rgba(31,15,58,0.98),rgba(15,15,15,1))] px-6 py-12 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_60px_rgba(124,58,237,0.14)] md:px-10 md:py-16">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.18),transparent_35%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(217,75,75,0.12),transparent_32%)]"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom_right,transparent,rgba(255,255,255,0.03))]"></div>
+
+          <div className="relative mx-auto max-w-3xl text-center">
+            <h2 className="text-4xl font-bold tracking-tighter md:text-5xl">
+              Need Something Specific?
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-white/70">
+              Seen a bike, helmet, part or accessory you want? Message Alex Motosport
+              directly and we&apos;ll help confirm availability, pricing and sourcing options.
+            </p>
+            <a
+              href="https://wa.me/"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-8 inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-6 py-3 font-medium text-black transition duration-300 hover:bg-[#fff1f1] hover:shadow-[0_0_24px_rgba(217,75,75,0.24),0_0_32px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              Enquire on WhatsApp
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

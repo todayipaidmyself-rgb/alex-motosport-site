@@ -1,10 +1,11 @@
+import { AvailableBrands } from "@/sections/AvailableBrands";
 import { Banner } from "@/sections/Banner";
+import { InsideAlexMotosport } from "@/sections/InsideAlexMotosport";
 import { Navbar } from "@/sections/Navbar";
 import { Hero } from "@/sections/Hero";
-import { LogoTicker } from "@/sections/LogoTicker";
+import { PromoBannerSlider } from "@/sections/PromoBannerSlider";
+import { TrustStrip } from "@/sections/TrustStrip";
 import { Features } from "@/sections/Features";
-import { ProductShowcase } from "@/sections/ProductShowcase";
-import { FAQs } from "@/sections/FAQs";
 import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
 
@@ -14,10 +15,11 @@ export default function Home() {
       <Banner />
       <Navbar />
       <Hero />
-      <LogoTicker />
+      <TrustStrip />
+      <InsideAlexMotosport />
       <Features />
-      <ProductShowcase />
-      <FAQs />
+      <AvailableBrands />
+      <PromoBannerSlider />
       <CallToAction />
       <Footer />
     </>
