@@ -1,15 +1,24 @@
+"use client";
+
+import Image from "next/image";
+import { catalog } from "@/data/catalog";
+import { openEnquiryMenu, whatsappMessages } from "@/lib/contact";
+
 const gearCategories = [
   {
     title: "Helmets",
     copy: "Full-face, motocross and street helmets sourced for protection, comfort and style.",
+    image: catalog.helmets[0].image,
   },
   {
     title: "Riding Gear",
     copy: "Jackets, gloves, boots and body protection for daily riders and off-road use.",
+    image: catalog.gear[0].image,
   },
   {
     title: "Parts & Accessories",
     copy: "Chains, sprockets, brakes, protection parts, luggage, mounts and everyday essentials.",
+    image: catalog.parts[0].image,
   },
 ];
 
@@ -23,6 +32,10 @@ export const GearAccessoriesGrid = () => {
             Browse core riding essentials and support items that Alex Motosport can help source
             locally through trusted partners.
           </p>
+          <p className="mt-6 text-white/70">
+            Essential riding gear and accessories, sourced locally through trusted partners in
+            Cyprus.
+          </p>
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -34,9 +47,14 @@ export const GearAccessoriesGrid = () => {
               <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(10,10,10,1),rgba(35,16,67,0.95),rgba(18,18,18,1))] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_40px_rgba(124,58,237,0.15)] transition duration-300 group-hover:border-[rgba(186,64,112,0.34)]">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.18),transparent_45%)] opacity-80 transition duration-300 group-hover:opacity-100"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.12),transparent_42%)] opacity-70 transition duration-300 group-hover:opacity-100"></div>
-                <div className="absolute inset-0 bg-[linear-gradient(to_bottom_right,transparent,rgba(255,255,255,0.04))] transition duration-300 group-hover:scale-105 group-hover:brightness-110"></div>
-                <div className="relative flex aspect-[4/3] items-center justify-center text-center text-sm uppercase tracking-[0.2em] text-white/45 transition duration-300 group-hover:scale-[1.03] group-hover:text-white/55">
-                  Visual preview pending
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={category.image}
+                    alt={category.title}
+                    width={600}
+                    height={400}
+                    className="h-full w-full rounded-xl object-cover transition duration-500 group-hover:scale-105"
+                  />
                 </div>
               </div>
 
@@ -45,8 +63,12 @@ export const GearAccessoriesGrid = () => {
                 <p className="mt-3 text-white/65">{category.copy}</p>
               </div>
 
-              <button className="mt-6 inline-flex rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:bg-[#fff1f1] hover:shadow-[0_0_24px_rgba(217,75,75,0.24),0_0_32px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black">
-                Request Options
+              <button
+                type="button"
+                onClick={() => openEnquiryMenu(whatsappMessages.bikesGear)}
+                className="mt-6 inline-flex rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:bg-[#fff1f1] hover:shadow-[0_0_24px_rgba(217,75,75,0.24),0_0_32px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                Make an Enquiry
               </button>
             </article>
           ))}

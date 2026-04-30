@@ -9,37 +9,37 @@ const spotlightItems = [
   {
     title: "Storefront",
     caption: "Paphos Storefront",
-    src: "/images/shop/alex-motosport-store-front-main.webp",
+    src: "/images/alex-motosport-images/alex-motosport-store-front-main.webp",
     alt: "Paphos Storefront",
   },
   {
     title: "Bike Display",
     caption: "Bikes In Store",
-    src: "/images/shop/alex-motosport-bike-main.webp",
+    src: "/images/alex-motosport-images/alex-motosport-bike-main.webp",
     alt: "Bikes In Store",
   },
   {
     title: "Helmets",
     caption: "Helmets & Gear",
-    src: "/images/shop/alex-motosport-helmet.webp",
+    src: "/images/alex-motosport-images/alex-motosport-helmet.webp",
     alt: "Helmets & Gear",
   },
   {
     title: "Parts",
     caption: "Parts & Accessories",
-    src: "/images/shop/alex-motosport-parts-display.webp",
+    src: "/images/alex-motosport-images/alex-motosport-accessories.webp",
     alt: "Parts & Accessories",
   },
   {
     title: "Bike Detail",
     caption: "Bike Detail",
-    src: "/images/shop/alex-motosport-bike-wheel-angle.webp",
+    src: "/images/alex-motosport-images/alex-motosport-bike-wheel-angle.webp",
     alt: "Bike Detail",
   },
   {
     title: "Accessories",
     caption: "Rider Accessories",
-    src: "/images/shop/alex-motosport-accessories.webp",
+    src: "/images/alex-motosport-images/alex-moto-accessories.webp",
     alt: "Rider Accessories",
   },
 ];
@@ -97,7 +97,7 @@ export const InsideAlexMotosport = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.99 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="absolute inset-0"
+                  className="relative h-full w-full"
                 >
                   <Image
                     src={activeItem.src}

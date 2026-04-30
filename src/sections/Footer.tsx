@@ -41,17 +41,32 @@ export const Footer = () => {
 
           <div className="text-center md:text-left">
             <h3 className="text-sm uppercase tracking-[0.22em] text-white/45">Contact &amp; Enquiry</h3>
-            <div className="mt-4 space-y-3">
+            <div className="mt-4 space-y-2 text-white/60">
               <p>Paphos, Cyprus</p>
+              <a href="tel:+35726270202" className="block transition duration-200 hover:text-white">
+                +357 26 27 02 02
+              </a>
+              <a href="tel:+35797975657" className="block transition duration-200 hover:text-white">
+                +357 97 97 56 57
+              </a>
               <a
-                href="https://wa.me/"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex transition duration-200 hover:text-white"
+                href="mailto:info@alexmotosport.com"
+                className="block transition duration-200 hover:text-white"
               >
-                WhatsApp enquiry
+                info@alexmotosport.com
               </a>
             </div>
+            <div className="mt-4">
+              <a
+                href="https://wa.me/35797975657"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:bg-[#fff1f1] hover:shadow-[0_0_24px_rgba(217,75,75,0.24),0_0_32px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                Ask Alex on WhatsApp
+              </a>
+            </div>
+            <p className="mt-3 text-sm text-white/45">Mon–Fri 9am–6pm · Sat 9am–1pm</p>
             <ul className="mt-5 flex justify-center gap-2.5 md:justify-start">
               <li className="cursor-pointer transition duration-200 hover:text-white"><XSocialIcon /></li>
               <li className="cursor-pointer transition duration-200 hover:text-white"><InstaIcon /></li>

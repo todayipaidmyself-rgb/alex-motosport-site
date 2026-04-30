@@ -1,23 +1,86 @@
+"use client";
+
+import Image from "next/image";
+import { openEnquiryMenu, whatsappMessages } from "@/lib/contact";
+
 const bikes = [
   {
-    name: "Kayo K2 250",
-    specs: "250cc, manual, adults",
+    name: "KT50 3",
+    specs: "Kayo model available through Alex Motosport",
     price: "Price on enquiry",
+    image: "/images/catalog/kayo/kt50-3_1_1.png",
   },
   {
-    name: "Kayo T4 250 Enduro",
-    specs: "250cc, manual, adults",
+    name: "A50 Pro",
+    specs: "Kayo model available through Alex Motosport",
     price: "Price on enquiry",
+    image: "/images/catalog/kayo/a50-prof-pic2.jpg",
   },
   {
-    name: "Kayo TT 140",
-    specs: "140cc, manual, youth",
+    name: "EA50 Electric",
+    specs: "Kayo model available through Alex Motosport",
     price: "Price on enquiry",
+    image: "/images/catalog/kayo/ea50-electric3.jpg",
   },
   {
-    name: "Kayo AU 200 ATV",
-    specs: "200cc, automatic, all-terrain",
+    name: "S70 Cart Category",
     price: "Price on enquiry",
+    specs: "Kayo model available through Alex Motosport",
+    image: "/images/catalog/kayo/s70-cart-category (1).jpg",
+  },
+  {
+    name: "MiniGP Category",
+    specs: "Kayo model available through Alex Motosport",
+    price: "Price on enquiry",
+    image: "/images/catalog/kayo/minigp-category.jpg",
+  },
+  {
+    name: "AY70",
+    specs: "Kayo model available through Alex Motosport",
+    price: "Price on enquiry",
+    image: "/images/catalog/kayo/ay70.jpg",
+  },
+  {
+    name: "Kayo K2 Pro",
+    specs: "Kayo model available through Alex Motosport",
+    price: "Price on enquiry",
+    image: "/images/catalog/kayo/kayo_k2_pro_-_0_1.png",
+  },
+  {
+    name: "3 19",
+    specs: "Kayo model available through Alex Motosport",
+    price: "Price on enquiry",
+    image: "/images/catalog/kayo/3_19.jpg",
+  },
+  {
+    name: "AT110 01",
+    specs: "Kayo model available through Alex Motosport",
+    price: "Price on enquiry",
+    image: "/images/catalog/kayo/at110_01_1.png",
+  },
+  {
+    name: "Kayo K2 Pro 250cc",
+    specs: "Kayo model available through Alex Motosport",
+    price: "Price on enquiry",
+    image: "/images/catalog/kayo/kayo-k2-pro-250cc-ruote-21-18.jpg",
+  },
+  {
+    name: "Kayo TT140 New Color 1",
+    specs: "Kayo model available through Alex Motosport",
+    price: "Price on enquiry",
+    image: "/images/catalog/kayo/kayo-tt140-new-color_1.png",
+  },
+  {
+    name: "KMB60 Profile",
+    specs: "Kayo model available through Alex Motosport",
+    price: "Price on enquiry",
+    image: "/images/catalog/kayo/kmb60-profile-magento_1.jpg",
+  },
+  {
+    name: "Kayo TT140 New Color",
+    specs: "Kayo model available through Alex Motosport",
+    price: "Price on enquiry",
+    image: "/images/catalog/kayo/kayo-tt140-new-color.png",
   },
 ];
 
@@ -31,21 +94,26 @@ export const KayoBikesGrid = () => {
             Explore a starter range of Kayo models available through Alex Motosport.
             Final models, availability and pricing can be confirmed on enquiry.
           </p>
+          <p className="mt-6 text-white/70">
+            A selection of Kayo bikes available through Alex Motosport, with support and
+            guidance on the right model for your needs.
+          </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="mt-14 -mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-2 md:-mx-2 md:gap-6 md:px-2">
           {bikes.map((bike) => (
             <article
               key={bike.name}
-              className="group rounded-3xl border border-white/10 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm transition duration-300 hover:scale-[1.02] hover:border-[rgba(186,64,112,0.38)] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45),0_0_36px_rgba(217,75,75,0.08)]"
+              className="group w-[280px] shrink-0 snap-start rounded-3xl border border-white/10 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm transition duration-300 hover:border-[rgba(186,64,112,0.38)] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45),0_0_36px_rgba(217,75,75,0.08)] md:w-[340px] lg:w-[360px]"
             >
-              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(10,10,10,1),rgba(35,16,67,0.95),rgba(18,18,18,1))] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_40px_rgba(124,58,237,0.15)] transition duration-300 group-hover:border-[rgba(186,64,112,0.34)]">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.18),transparent_45%)] opacity-80 transition duration-300 group-hover:opacity-100"></div>
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.12),transparent_42%)] opacity-70 transition duration-300 group-hover:opacity-100"></div>
-                <div className="absolute inset-0 bg-[linear-gradient(to_bottom_right,transparent,rgba(255,255,255,0.04))] transition duration-300 group-hover:scale-105 group-hover:brightness-110"></div>
-                <div className="relative flex aspect-[4/3] items-center justify-center text-center text-sm uppercase tracking-[0.2em] text-white/45 transition duration-300 group-hover:scale-[1.03] group-hover:text-white/55">
-                  Visual preview pending
-                </div>
+              <div className="relative aspect-[4/3] flex items-center justify-center rounded-2xl bg-white p-6">
+                <Image
+                  src={bike.image}
+                  alt={bike.name}
+                  width={800}
+                  height={600}
+                  className="max-h-full max-w-full object-contain transition duration-500 group-hover:scale-105"
+                />
               </div>
 
               <div className="mt-6">
@@ -54,8 +122,12 @@ export const KayoBikesGrid = () => {
                 <p className="mt-4 text-xl font-semibold text-white">{bike.price}</p>
               </div>
 
-              <button className="mt-6 inline-flex rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:bg-[#fff1f1] hover:shadow-[0_0_24px_rgba(217,75,75,0.24),0_0_32px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black">
-                Enquire About This Bike
+              <button
+                type="button"
+                onClick={() => openEnquiryMenu(whatsappMessages.product(bike.name))}
+                className="mt-6 inline-flex rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:bg-[#fff1f1] hover:shadow-[0_0_24px_rgba(217,75,75,0.24),0_0_32px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                Make an Enquiry
               </button>
             </article>
           ))}

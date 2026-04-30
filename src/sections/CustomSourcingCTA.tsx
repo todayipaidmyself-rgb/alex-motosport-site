@@ -1,3 +1,7 @@
+"use client";
+
+import { openEnquiryMenu, whatsappMessages } from "@/lib/contact";
+
 export const CustomSourcingCTA = () => {
   return (
     <section className="bg-black py-[72px] text-white md:py-24">
@@ -19,14 +23,13 @@ export const CustomSourcingCTA = () => {
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a
-                href="https://wa.me/35700000000"
-                target="_blank"
-                rel="noreferrer"
+              <button
+                type="button"
+                onClick={() => openEnquiryMenu(whatsappMessages.sourcing)}
                 className="inline-flex rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:bg-[#fff1f1] hover:shadow-[0_0_24px_rgba(217,75,75,0.24),0_0_32px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
-                Send Product Link
-              </a>
+                Make an Enquiry
+              </button>
               <a
                 href="https://www.motorace.com.cy/"
                 target="_blank"

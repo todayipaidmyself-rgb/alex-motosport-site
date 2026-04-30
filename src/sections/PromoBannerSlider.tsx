@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { openEnquiryMenu, whatsappMessages } from "@/lib/contact";
 
 const slides = [
   {
@@ -9,6 +11,8 @@ const slides = [
     title: "Performance Tires",
     text: "Upgrade your ride with sport-focused tire options.",
     buttonLabel: "Enquire",
+    action: "enquiry",
+    enquiryMessage: whatsappMessages.product("tyres"),
     imagePosition: "center",
   },
   {
@@ -16,6 +20,8 @@ const slides = [
     title: "Total Grip. Total Control.",
     text: "Premium road and track tire options available through Alex Motosport.",
     buttonLabel: "Enquire",
+    action: "enquiry",
+    enquiryMessage: whatsappMessages.product("tyres"),
     imagePosition: "center",
   },
   {
@@ -23,6 +29,8 @@ const slides = [
     title: "Premium Parts",
     text: "Parts and upgrades sourced for performance, protection and reliability.",
     buttonLabel: "Request Parts",
+    action: "enquiry",
+    enquiryMessage: whatsappMessages.product("parts"),
     imagePosition: "center",
   },
   {
@@ -30,6 +38,8 @@ const slides = [
     title: "Ride Ready",
     text: "Jackets, boots and riding gear for every journey.",
     buttonLabel: "Explore Gear",
+    action: "internal",
+    href: "/bikes-gear",
     imagePosition: "center right",
   },
   {
@@ -37,17 +47,24 @@ const slides = [
     title: "Track Day 2026",
     text: "Push limits. Ride faster. Ask us about upcoming track day options.",
     buttonLabel: "Learn More",
+    action: "external",
+    href: "https://www.motorace.com.cy/trackday",
     imagePosition: "center right",
   },
-];
+] as const;
 
 const AUTO_ADVANCE_MS = 5500;
+
+const ctaClassName =
+  "inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:bg-[#fff1f1] hover:shadow-[0_0_24px_rgba(217,75,75,0.24),0_0_32px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black";
 
 export const PromoBannerSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
+
+  const activeSlide = slides[activeIndex];
 
   useEffect(() => {
     if (isPaused) {
@@ -128,9 +145,9 @@ export const PromoBannerSlider = () => {
                     className="object-contain"
                     style={{ objectPosition: slide.imagePosition }}
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.1),rgba(0,0,0,0.03),rgba(0,0,0,0.01))] md:bg-[linear-gradient(to_top,rgba(0,0,0,0.12),rgba(0,0,0,0.04),rgba(0,0,0,0.01))]"></div>
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.04),transparent_34%)] md:bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.08),transparent_34%)]"></div>
-                  <div className="absolute inset-0 hidden md:block bg-[radial-gradient(circle_at_top_left,rgba(168,85,247,0.08),transparent_35%)]"></div>
+                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.1),rgba(0,0,0,0.03),rgba(0,0,0,0.01))] md:bg-[linear-gradient(to_top,rgba(0,0,0,0.12),rgba(0,0,0,0.04),rgba(0,0,0,0.01))]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.04),transparent_34%)] md:bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.08),transparent_34%)]" />
+                  <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_top_left,rgba(168,85,247,0.08),transparent_35%)] md:block" />
                 </div>
               );
             })}
@@ -140,22 +157,36 @@ export const PromoBannerSlider = () => {
             <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
               <div className="max-w-2xl">
                 <h2 className="text-2xl font-bold tracking-tighter md:text-4xl">
-                  {slides[activeIndex].title}
+                  {activeSlide.title}
                 </h2>
                 <p className="mt-2 max-w-xl text-sm text-white/72 md:text-base">
-                  {slides[activeIndex].text}
+                  {activeSlide.text}
                 </p>
               </div>
 
               <div className="flex flex-col gap-4 md:min-w-[240px] md:items-end">
-                <a
-                  href="https://wa.me/35700000000"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:bg-[#fff1f1] hover:shadow-[0_0_24px_rgba(217,75,75,0.24),0_0_32px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                >
-                  {slides[activeIndex].buttonLabel}
-                </a>
+                {activeSlide.action === "enquiry" ? (
+                  <button
+                    type="button"
+                    onClick={() => openEnquiryMenu(activeSlide.enquiryMessage)}
+                    className={ctaClassName}
+                  >
+                    {activeSlide.buttonLabel}
+                  </button>
+                ) : activeSlide.action === "internal" ? (
+                  <Link href={activeSlide.href} className={ctaClassName}>
+                    {activeSlide.buttonLabel}
+                  </Link>
+                ) : (
+                  <a
+                    href={activeSlide.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={ctaClassName}
+                  >
+                    {activeSlide.buttonLabel}
+                  </a>
+                )}
 
                 <div className="flex items-center gap-2">
                   {slides.map((slide, index) => (
