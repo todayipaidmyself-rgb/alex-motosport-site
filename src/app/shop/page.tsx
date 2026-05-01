@@ -1,14 +1,5 @@
-import { Footer } from "@/sections/Footer";
-import { PageHero } from "@/sections/PageHero";
+import { redirect } from "next/navigation";
 
 export default function ShopPage() {
-  return (
-    <>
-      <PageHero
-        title="Shop"
-        intro="Browse the full Motorace catalogue, then send Alex Motosport what you need and we’ll help source it locally."
-      />
-      <Footer />
-    </>
-  );
+  redirect("https://www.motorace.com.cy/");
 }

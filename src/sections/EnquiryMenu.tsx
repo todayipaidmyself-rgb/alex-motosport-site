@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState, FormEvent } from "react";
 import { getWhatsAppUrl, whatsappMessages } from "@/lib/contact";
 
 type EnquiryMenuProps = {
@@ -14,8 +14,12 @@ export const EnquiryMenu = ({
   onClose,
   sourceMessage,
 }: EnquiryMenuProps) => {
-  const [showConfirmation, setShowConfirmation] = useState(false);
   const [message, setMessage] = useState("");
+  const [pageUrl, setPageUrl] = useState("");
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     if (!isOpen) {
@@ -23,180 +27,147 @@ export const EnquiryMenu = ({
       return;
     }
 
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
     document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleEscape);
 
     return () => {
       document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleEscape);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
       setMessage(sourceMessage || "");
+      setPageUrl(window.location.href);
+      setIsSubmitted(false);
+      setSubmitError("");
     }
   }, [isOpen, sourceMessage]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setShowConfirmation(true);
+
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    const formData = new FormData(event.currentTarget);
+
+    try {
+      const res = await fetch("https://formspree.io/f/mgodekee", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (!res.ok) throw new Error("Failed");
+
+      setIsSubmitted(true);
+    } catch {
+      setSubmitError(
+        "Something went wrong. Please try again or message Alex on WhatsApp."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div
-      className={`fixed inset-0 z-[100] transition duration-300 ${
-        isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-      }`}
-      aria-hidden={!isOpen}
+      className={`fixed inset-0 z-[100] ${
+        isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      } transition`}
     >
-      <button
-        type="button"
-        aria-label="Close enquiry menu backdrop"
-        onClick={onClose}
-        className="absolute inset-0 bg-black/80"
-      />
+      <div className="absolute inset-0 bg-black/80" onClick={onClose} />
 
-      <div className="absolute inset-0 overflow-y-auto bg-black">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(168,85,247,0.12),transparent_30%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.12),transparent_32%)]" />
+      <div className="relative min-h-screen flex items-center justify-center p-6">
+        <div className="w-full max-w-2xl rounded-3xl bg-[#050505] border border-white/10 p-6">
 
-        <div
-          className={`relative min-h-screen transition duration-500 ${
-            isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-          }`}
-        >
-          <div className="container flex min-h-screen flex-col px-4 py-6 md:py-8">
-            <div className="flex justify-end">
-              <button
-                type="button"
-                onClick={onClose}
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-2xl text-white/70 transition duration-300 hover:border-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                aria-label="Close enquiry menu"
-              >
-                ×
-              </button>
-            </div>
+          {isSubmitted ? (
+            // ✅ SUCCESS STATE
+            <div className="space-y-6">
+              <p className="text-xs uppercase tracking-[0.24em] text-white/45">
+                Enquiry sent
+              </p>
 
-            <div className="grid flex-1 grid-cols-1 gap-8 py-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-12">
-              <div className="max-w-xl">
-                <p className="text-xs uppercase tracking-[0.24em] text-white/45">Enquiry</p>
-                <h2 className="mt-4 text-4xl font-bold tracking-tighter text-white md:text-6xl">
-                  Ask Alex Motosport
-                </h2>
-                <p className="mt-5 max-w-lg text-base text-white/70 md:text-lg">
-                  Send a bike, gear, repair or product sourcing enquiry. We&apos;ll help you
-                  confirm availability, pricing and the best next step.
-                </p>
+              <h2 className="text-3xl font-bold text-white">
+                Thanks — Alex Motosport has received your message.
+              </h2>
 
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <a
-                    href={getWhatsAppUrl(sourceMessage || whatsappMessages.general)}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:bg-[#fff1f1] hover:shadow-[0_0_24px_rgba(217,75,75,0.24),0_0_32px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                  >
-                    WhatsApp Alex
-                  </a>
-                  <a
-                    href="tel:+35726270202"
-                    className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/10 bg-white/5 px-5 py-3 font-medium text-white transition duration-300 hover:border-white/20 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                  >
-                    Call Shop
-                  </a>
-                </div>
+              <p className="text-white/70">
+                We’ll get back to you as soon as possible.
+              </p>
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <button
+                  onClick={onClose}
+                  className="bg-white text-black px-5 py-3 rounded-lg"
+                >
+                  Close
+                </button>
 
                 <a
-                  href="mailto:info@alexmotosport.com"
-                  className="mt-6 inline-flex text-white/70 transition duration-300 hover:text-white"
+                  href={getWhatsAppUrl(sourceMessage || whatsappMessages.general)}
+                  target="_blank"
+                  className="border border-white/10 px-5 py-3 rounded-lg text-white"
                 >
-                  info@alexmotosport.com
+                  WhatsApp Alex
                 </a>
-
-                <div className="mt-8 space-y-2 text-sm text-white/60 md:text-base">
-                  <p>Paphos, Cyprus</p>
-                  <p>Mon–Fri 9am–6pm · Sat 9am–1pm</p>
-                  <p>Agiou Spyridonos, 19, SHOP 4, 8022, Pafos</p>
-                </div>
-              </div>
-
-              <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm md:p-8">
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label htmlFor="enquiry-name" className="mb-2 block text-sm text-white/60">
-                      Name
-                    </label>
-                    <input
-                      id="enquiry-name"
-                      name="name"
-                      type="text"
-                      className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-white placeholder:text-white/30 focus:border-white/20 focus:outline-none"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="enquiry-phone" className="mb-2 block text-sm text-white/60">
-                      Phone
-                    </label>
-                    <input
-                      id="enquiry-phone"
-                      name="phone"
-                      type="tel"
-                      className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-white placeholder:text-white/30 focus:border-white/20 focus:outline-none"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="enquiry-subject" className="mb-2 block text-sm text-white/60">
-                      What are you looking for?
-                    </label>
-                    <input
-                      id="enquiry-subject"
-                      name="subject"
-                      type="text"
-                      placeholder="Bike, helmet, repair, part, product link..."
-                      className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-white placeholder:text-white/30 focus:border-white/20 focus:outline-none"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="enquiry-message" className="mb-2 block text-sm text-white/60">
-                      Message / Product link
-                    </label>
-                    <textarea
-                      id="enquiry-message"
-                      name="message"
-                      rows={6}
-                      value={message}
-                      onChange={(event) => setMessage(event.target.value)}
-                      className="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-white/30 focus:border-white/20 focus:outline-none"
-                    />
-                  </div>
-
-                  <div className="pt-2">
-                    <button
-                      type="submit"
-                      className="inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:bg-[#fff1f1] hover:shadow-[0_0_24px_rgba(217,75,75,0.24),0_0_32px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                    >
-                      Send Enquiry
-                    </button>
-                    {showConfirmation && (
-                      <p className="mt-3 text-sm text-white/60">
-                        Thanks — please use WhatsApp for the fastest reply while online form
-                        handling is being connected.
-                      </p>
-                    )}
-                  </div>
-                </form>
               </div>
             </div>
-          </div>
+          ) : (
+            // ✅ FORM
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input type="hidden" name="sourceMessage" value={sourceMessage || ""} />
+              <input type="hidden" name="pageUrl" value={pageUrl} />
+
+              <input
+                name="name"
+                placeholder="Name"
+                required
+                className="w-full h-12 px-4 rounded-xl bg-white/5 text-white"
+              />
+
+              <input
+                name="phone"
+                placeholder="Phone"
+                className="w-full h-12 px-4 rounded-xl bg-white/5 text-white"
+              />
+
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                className="w-full h-12 px-4 rounded-xl bg-white/5 text-white"
+              />
+
+              <input
+                name="subject"
+                placeholder="What are you looking for?"
+                className="w-full h-12 px-4 rounded-xl bg-white/5 text-white"
+              />
+
+              <textarea
+                name="message"
+                rows={5}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl bg-white/5 text-white"
+              />
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full h-12 bg-white text-black rounded-lg"
+              >
+                {isSubmitting ? "Sending..." : "Send Enquiry"}
+              </button>
+
+              {submitError && (
+                <p className="text-red-400 text-sm">{submitError}</p>
+              )}
+            </form>
+          )}
         </div>
       </div>
     </div>
