@@ -48,9 +48,8 @@ export const Navbar = () => {
       <section className="bg-black py-4">
         <div className="px-4">
           <div className="flex items-center justify-between">
-            <div className="relative">
-              <div className="absolute bottom-0 top-2 w-full bg-[linear-gradient(to_right,rgba(185,28,28,0.35),rgb(252,214,255),rgb(41,216,255),rgb(248,154,191),rgba(185,28,28,0.3))] blur-md" />
-              <Link href="/" className="relative block w-[110px] md:w-[140px]">
+            <div>
+              <Link href="/" className="block w-[110px] md:w-[140px]">
                 <Image
                   src="/images/brands/alex-motosport-logo.png"
                   alt="Alex Motosport logo"
@@ -98,7 +97,7 @@ export const Navbar = () => {
                         "relative rounded-md px-1 py-1 transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
                         isActive
                           ? "text-white"
-                          : "hover:text-white hover:[text-shadow:0_0_12px_rgba(217,75,75,0.28)]",
+                          : "hover:text-white",
                       )}
                     >
                       {link.label}

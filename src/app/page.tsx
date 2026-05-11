@@ -1,4 +1,5 @@
 import { AvailableBrands } from "@/sections/AvailableBrands";
+import { GallerySlider } from "@/sections/GallerySlider";
 import { InsideAlexMotosport } from "@/sections/InsideAlexMotosport";
 import { Hero } from "@/sections/Hero";
 import { PromoBannerSlider } from "@/sections/PromoBannerSlider";
@@ -15,6 +16,7 @@ export default function Home() {
       <AvailableBrands />
       <PromoBannerSlider />
       <Features />
+      <GallerySlider />
       <InsideAlexMotosport />
       <CallToAction />
       <Footer />

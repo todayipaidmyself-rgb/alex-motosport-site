@@ -81,7 +81,15 @@ export const EnquiryMenu = ({
       <div className="absolute inset-0 bg-black/80" onClick={onClose} />
 
       <div className="relative min-h-screen flex items-center justify-center p-6">
-        <div className="w-full max-w-2xl rounded-3xl bg-[#050505] border border-white/10 p-6">
+        <div className="relative w-full max-w-2xl rounded-3xl bg-[#050505] border border-white/10 p-6">
+          <button
+            type="button"
+            aria-label="Close enquiry modal"
+            onClick={onClose}
+            className="absolute right-4 top-4 z-20 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[rgba(0,0,0,0.55)] text-3xl leading-none text-white transition duration-300 hover:bg-white/10 md:h-11 md:w-11 md:text-2xl"
+          >
+            ×
+          </button>
 
           {isSubmitted ? (
             // ✅ SUCCESS STATE

@@ -19,7 +19,7 @@ const items = [
   {
     question: "Do you sell motorcycle parts and accessories in Cyprus?",
     answer:
-      "Yes. We can help source chains, sprockets, brakes, protection parts, luggage, mounts and everyday motorcycle essentials.",
+      "Yes. We can help source chains, sprockets, brakes, crash protection, luggage and everyday motorcycle essentials.",
   },
 ];
 

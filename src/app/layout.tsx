@@ -8,8 +8,9 @@ import "./globals.css";
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
 const siteTitle = "Alex Motosport | Bikes, Gear & Repairs in Paphos";
+
 const siteDescription =
-  "Motocross and enduro bikes, riding gear, parts sourcing and repair support in Paphos, Cyprus.";
+  "Motocross bikes, riding gear, parts sourcing and repair support in Paphos, Cyprus.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://alexmotosport.com"),

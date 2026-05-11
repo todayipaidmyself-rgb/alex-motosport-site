@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
@@ -6,11 +7,12 @@ import { AnimatePresence, motion } from "framer-motion";
 export const Hero = () => {
   const rotatingLines = [
     "Motocross Gear",
-    "Enduro Bikes",
-    "Street Parts",
+    "Motorcycle Gear",
+    "Spare Parts",
     "Kayo Motorbikes",
     "Rider Essentials",
   ];
+
   const [activeLineIndex, setActiveLineIndex] = useState(0);
 
   useEffect(() => {
@@ -34,10 +36,12 @@ export const Hero = () => {
       >
         <source src="/videos/alex-motos-hero-video.mp4" type="video/mp4" />
       </video>
+
       <div className="absolute inset-0 bg-black/70"></div>
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(95,44,168,0.18),rgba(95,44,168,0.1),rgba(0,0,0,0.2))]"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(217,75,75,0.12),transparent_32%)]"></div>
-      <div className="absolute h-[375px] w-[750px] md:h-[768px] md:w-[1536px] lg:h-[1200px] lg:w-[2400px] rounded-[100%] bg-black left-1/2 top-[calc(100%-96px)] -translate-x-1/2 border border-[#b48cde]/60 bg-[radial-gradient(closest-side,rgba(0,0,0,0.88)_82%,rgba(149,96,235,0.32))] md:top-[calc(100%-120px)]"></div>
+      <div className="absolute left-1/2 top-[calc(100%-96px)] h-[375px] w-[750px] -translate-x-1/2 rounded-[100%] border border-[#b48cde]/60 bg-black bg-[radial-gradient(closest-side,rgba(0,0,0,0.88)_82%,rgba(149,96,235,0.32))] md:top-[calc(100%-120px)] md:h-[768px] md:w-[1536px] lg:h-[1200px] lg:w-[2400px]"></div>
+
       <div className="container relative z-10 flex min-h-screen items-center justify-center py-[72px] md:py-24">
         <div className="w-full">
           <div className="flex items-center justify-center">
@@ -45,6 +49,7 @@ export const Hero = () => {
               Alex Motosport | Paphos, Cyprus
             </div>
           </div>
+
           <div className="mt-8 flex justify-center">
             <div className="inline-flex">
               <h1 className="inline-flex max-w-5xl flex-col items-center text-center text-5xl font-bold tracking-tighter md:text-8xl">
@@ -66,12 +71,14 @@ export const Hero = () => {
               </h1>
             </div>
           </div>
+
           <div className="flex justify-center">
             <p className="mt-8 max-w-2xl text-center text-lg text-white/80 md:text-xl">
-              Kayo bikes, helmets, riding gear and parts — sourced locally through Alex
-              Motosport with trusted suppliers across Cyprus.
+              Kayo bikes, helmets, riding gear and spare parts, sourced locally through
+              Alex Motosport with trusted suppliers across Cyprus.
             </p>
           </div>
+
           <div className="mt-8 flex justify-center">
             <div className="flex flex-col items-center gap-4 sm:flex-row">
               <Link
@@ -80,8 +87,9 @@ export const Hero = () => {
               >
                 View Bikes
               </Link>
+
               <a
-                href="https://wa.me/35700000000"
+                href="https://wa.me/35797975657"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-lg border border-white/20 bg-white/5 px-5 py-3 font-medium text-white transition duration-300 hover:border-[rgba(186,64,112,0.42)] hover:bg-white/10 hover:shadow-[0_0_24px_rgba(217,75,75,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"

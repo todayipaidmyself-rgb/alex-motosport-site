@@ -12,7 +12,7 @@ const slides = [
     buttonLabel: "Ask Alex on WhatsApp",
     action: "whatsapp",
     whatsappMessage: whatsappMessages.bikesGear,
-    image: "/images/editorial/alex-hero-studio-bike.webp",
+    image: "/images/gallery/bikes-and-gear-pics-banner-hero.webp",
     imagePosition: "center center",
   },
   {
