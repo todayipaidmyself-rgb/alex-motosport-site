@@ -45,7 +45,7 @@ export const Hero = () => {
       <div className="container relative z-10 flex min-h-screen items-center justify-center py-[72px] md:py-24">
         <div className="w-full">
           <div className="flex items-center justify-center">
-            <div className="rounded-lg border border-white/20 bg-white/5 px-3 py-1 text-sm uppercase tracking-[0.25em] text-white/70 backdrop-blur-sm">
+            <div className="rounded-lg border border-white/20 bg-white/5 px-3 py-1 text-center text-sm uppercase tracking-[0.25em] text-white/70 backdrop-blur-sm">
               Alex Motosport | Paphos, Cyprus
             </div>
           </div>
