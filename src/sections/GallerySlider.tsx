@@ -43,21 +43,63 @@ export const GallerySlider = () => {
     );
   };
 
+  const currentImageNumber = String(activeIndex + 1).padStart(2, "0");
+  const totalImages = String(galleryImages.length).padStart(2, "0");
+
   return (
     <section className="bg-black pb-[88px] pt-0 text-white md:pb-28">
       <div className="container">
-        <div className="mx-auto max-w-6xl">
-          <div className="relative overflow-hidden rounded-[24px] border border-white/10">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-[0.88fr_1.12fr] md:items-center md:gap-12">
+          <div className="order-1 max-w-xl">
+            <p className="text-xs uppercase tracking-[0.28em] text-white/45">
+              Store Gallery
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-5xl">
+              Details From Inside Alex Motosport
+            </h2>
+            <p className="mt-5 max-w-lg text-sm leading-relaxed text-white/65 md:text-base">
+              A closer look at bikes, riding gear, accessories and in-store details from the
+              Paphos store.
+            </p>
+
+            <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-6 md:mt-10 md:pt-8">
+              <p className="text-sm tracking-[0.24em] text-white/50">
+                {currentImageNumber} / {totalImages}
+              </p>
+
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  aria-label="Previous gallery image"
+                  onClick={showPreviousImage}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/40 text-lg text-white transition duration-300 hover:bg-white/10"
+                >
+                  ‹
+                </button>
+
+                <button
+                  type="button"
+                  aria-label="Next gallery image"
+                  onClick={showNextImage}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/40 text-lg text-white transition duration-300 hover:bg-white/10"
+                >
+                  ›
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="order-2">
             <button
               type="button"
               onClick={() => setActiveImage(currentImage.src)}
-              className="group relative block w-full"
+              className="group relative block w-full text-left"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#050505] md:aspect-[16/9]">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[24px] border border-white/10 bg-[#050505] md:aspect-[3/4]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentImage.src}
-                    initial={{ opacity: 0, scale: 1.015 }}
+                    initial={{ opacity: 0, scale: 1.02 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.01 }}
                     transition={{ duration: 0.45, ease: "easeOut" }}
@@ -68,69 +110,15 @@ export const GallerySlider = () => {
                       alt={currentImage.alt}
                       fill
                       priority
-                      sizes="(max-width: 768px) 100vw, (max-width: 1440px) 100vw, 1200px"
-                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition duration-500 group-hover:scale-[1.01]"
                     />
                   </motion.div>
                 </AnimatePresence>
 
-                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.38),rgba(0,0,0,0.08),transparent)]" />
-                <div className="absolute inset-y-0 left-0 w-20 bg-[linear-gradient(to_right,rgba(0,0,0,0.2),transparent)] md:w-28" />
-                <div className="absolute inset-y-0 right-0 w-20 bg-[linear-gradient(to_left,rgba(0,0,0,0.2),transparent)] md:w-28" />
-                <div className="absolute inset-0 transition duration-500 group-hover:bg-white/[0.02]" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.18),rgba(0,0,0,0.02),transparent)]" />
               </div>
             </button>
-
-            <button
-              type="button"
-              aria-label="Previous gallery image"
-              onClick={showPreviousImage}
-              className="absolute left-3 top-1/2 z-10 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/40 text-lg text-white transition duration-300 hover:bg-white/10 md:left-5 md:h-11 md:w-11"
-            >
-              ‹
-            </button>
-
-            <button
-              type="button"
-              aria-label="Next gallery image"
-              onClick={showNextImage}
-              className="absolute right-3 top-1/2 z-10 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/40 text-lg text-white transition duration-300 hover:bg-white/10 md:right-5 md:h-11 md:w-11"
-            >
-              ›
-            </button>
-          </div>
-        </div>
-
-        <div className="relative left-1/2 mt-5 w-screen -translate-x-1/2">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-[linear-gradient(to_right,#000,transparent)] md:w-20" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-[linear-gradient(to_left,#000,transparent)] md:w-20" />
-
-          <div className="flex gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] md:gap-4 md:px-10 lg:px-[max(4rem,calc((100vw-1200px)/2+1rem))] [&::-webkit-scrollbar]:hidden">
-            {galleryImages.map((image, index) => (
-              <button
-                key={image.src}
-                type="button"
-                onClick={() => setActiveIndex(index)}
-                className={`group relative aspect-[16/10] w-[72px] shrink-0 overflow-hidden rounded-2xl border transition duration-300 md:w-[120px] ${
-                  index === activeIndex
-                    ? "border-white/40 opacity-100"
-                    : "border-white/10 opacity-55 hover:opacity-80"
-                }`}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  sizes="(max-width: 768px) 72px, 120px"
-                  className="object-cover"
-                />
-                <div
-                  className={`absolute inset-0 transition duration-300 ${
-                    index === activeIndex ? "bg-transparent" : "bg-black/20"
-                  }`}
-                />
-              </button>
-            ))}
           </div>
         </div>
       </div>

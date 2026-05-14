@@ -7,33 +7,6 @@ import { openEnquiryMenu, whatsappMessages } from "@/lib/contact";
 
 const slides = [
   {
-    image: "/images/alex-motosport-banner-pack/alex-motosport-tires-evolution.webp",
-    title: "Performance Tires",
-    text: "Upgrade your ride with sport-focused tire options.",
-    buttonLabel: "Enquire",
-    action: "enquiry",
-    enquiryMessage: whatsappMessages.product("tyres"),
-    imagePosition: "center",
-  },
-  {
-    image: "/images/alex-motosport-banner-pack/alex-motosport-tires-mk4.webp",
-    title: "Total Grip. Total Control.",
-    text: "Premium road and track tire options available through Alex Motosport.",
-    buttonLabel: "Enquire",
-    action: "enquiry",
-    enquiryMessage: whatsappMessages.product("tyres"),
-    imagePosition: "center",
-  },
-  {
-    image: "/images/alex-motosport-banner-pack/alex-motosport-parts-premium.webp",
-    title: "Premium Parts",
-    text: "Parts and upgrades sourced for performance, protection and reliability.",
-    buttonLabel: "Request Parts",
-    action: "enquiry",
-    enquiryMessage: whatsappMessages.product("parts"),
-    imagePosition: "center",
-  },
-  {
     image: "/images/alex-motosport-banner-pack/alex-motosport-rst-gear.webp",
     title: "Ride Ready",
     text: "Jackets, boots and riding gear for every journey.",
@@ -165,15 +138,7 @@ export const PromoBannerSlider = () => {
               </div>
 
               <div className="flex flex-col gap-4 md:min-w-[240px] md:items-end">
-                {activeSlide.action === "enquiry" ? (
-                  <button
-                    type="button"
-                    onClick={() => openEnquiryMenu(activeSlide.enquiryMessage)}
-                    className={ctaClassName}
-                  >
-                    {activeSlide.buttonLabel}
-                  </button>
-                ) : activeSlide.action === "internal" ? (
+                {activeSlide.action === "internal" ? (
                   <Link href={activeSlide.href} className={ctaClassName}>
                     {activeSlide.buttonLabel}
                   </Link>
