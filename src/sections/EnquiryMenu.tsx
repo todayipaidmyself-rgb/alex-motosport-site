@@ -129,37 +129,58 @@ export const EnquiryMenu = ({
               <input type="hidden" name="sourceMessage" value={sourceMessage || ""} />
               <input type="hidden" name="pageUrl" value={pageUrl} />
 
+              <label htmlFor="enquiry-name" className="sr-only">
+                Name
+              </label>
               <input
+                id="enquiry-name"
                 name="name"
                 placeholder="Name"
                 required
                 className="w-full h-12 px-4 rounded-xl bg-white/5 text-white"
               />
 
+              <label htmlFor="enquiry-phone" className="sr-only">
+                Phone
+              </label>
               <input
+                id="enquiry-phone"
                 name="phone"
                 placeholder="Phone"
                 className="w-full h-12 px-4 rounded-xl bg-white/5 text-white"
               />
 
+              <label htmlFor="enquiry-email" className="sr-only">
+                Email
+              </label>
               <input
+                id="enquiry-email"
                 name="email"
                 type="email"
                 placeholder="Email"
                 className="w-full h-12 px-4 rounded-xl bg-white/5 text-white"
               />
 
+              <label htmlFor="enquiry-subject" className="sr-only">
+                What are you looking for?
+              </label>
               <input
+                id="enquiry-subject"
                 name="subject"
                 placeholder="What are you looking for?"
                 className="w-full h-12 px-4 rounded-xl bg-white/5 text-white"
               />
 
+              <label htmlFor="enquiry-message" className="sr-only">
+                Message
+              </label>
               <textarea
+                id="enquiry-message"
                 name="message"
                 rows={5}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
+                aria-label="Message"
                 className="w-full px-4 py-3 rounded-xl bg-white/5 text-white"
               />
 

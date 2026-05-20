@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import JournalClient from "./JournalClient";
+import JournalClient from "@/app/journal/JournalClient";
 
 export const metadata: Metadata = {
   title: "Motorcycle Journal Cyprus | Alex Motosport",
@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://alexmotosport.com/journal",
   },
+  authors: [
+    {
+      name: "Gustavo",
+      url: "https://createdbygustavo.com",
+    },
+  ],
 };
 
 export default function JournalPage() {

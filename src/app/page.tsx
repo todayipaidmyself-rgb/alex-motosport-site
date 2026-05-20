@@ -11,7 +11,8 @@ import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
 
 export const metadata: Metadata = {
-  title: "Alex Motosport Paphos | Kayo Bikes, Riding Gear & Motorcycle Parts Cyprus",
+  title:
+    "Alex Motosport Paphos | Kayo Bikes, Riding Gear & Motorcycle Parts Cyprus",
   description:
     "Alex Motosport in Paphos supplies Kayo bikes, motorcycle gear, helmets, parts and rider accessories across Cyprus. Visit the showroom or enquire online.",
   alternates: {
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <>
+    <main>
       <Hero />
       <TrustStrip />
       <AvailableBrands />
@@ -31,6 +32,6 @@ export default function Home() {
       <InsideAlexMotosport />
       <CallToAction />
       <Footer />
-    </>
+    </main>
   );
 }

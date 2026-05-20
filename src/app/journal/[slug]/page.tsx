@@ -129,10 +129,36 @@ export default function ArticlePage({
 }) {
   const article = articles.find((a) => a.slug === params.slug);
 
-  if (!article) return notFound();
+  if (!article) {
+    return notFound();
+  }
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.intro,
+    image: `https://alexmotosport.com${article.image}`,
+    mainEntityOfPage: `https://alexmotosport.com/journal/${article.slug}`,
+    articleSection: article.category,
+    author: {
+      "@type": "Person",
+      name: "Gustavo",
+      url: "https://createdbygustavo.com",
+    },
+    creator: {
+      "@type": "Organization",
+      name: "UltimateWorkz",
+      url: "https://ultimateworkzcy.com",
+    },
+  };
 
   return (
     <main className="bg-black text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       {/* HERO */}
       <section className="relative h-[55vh] min-h-[420px] w-full">
         <Image
@@ -183,6 +209,27 @@ export default function ArticlePage({
               </section>
             ))}
           </div>
+
+          <p className="mt-14 border-t border-white/10 pt-6 text-[11px] tracking-[0.12em] text-white/30">
+            Creative direction by{" "}
+            <a
+              href="https://createdbygustavo.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition duration-200 hover:text-white/55"
+            >
+              Gustavo
+            </a>{" "}
+            · Digital experience by{" "}
+            <a
+              href="https://ultimateworkzcy.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition duration-200 hover:text-white/55"
+            >
+              UltimateWorkz
+            </a>
+          </p>
 
           {/* MID CTA */}
           <div className="mt-14 rounded-2xl border border-white/10 bg-white/[0.04] p-6">

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import { openEnquiryMenu, whatsappMessages } from "@/lib/contact";
@@ -52,8 +53,8 @@ export default function JournalClient() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
-              Buying advice, riding insights and workshop knowledge for riders across
-              Paphos and Cyprus.
+              Buying advice, riding insights and workshop knowledge for riders
+              across Paphos and Cyprus.
             </p>
 
             <article className="mt-14 rounded-[32px] border border-white/10 bg-white/[0.04] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
@@ -69,9 +70,12 @@ export default function JournalClient() {
                 {featuredArticle.excerpt}
               </p>
 
-              <button className="mt-8 inline-flex rounded-lg bg-white px-5 py-3 font-medium text-black hover:bg-[#fff1f1]">
+              <Link
+                href={`/journal/${featuredArticle.slug}`}
+                className="mt-8 inline-flex rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-200 hover:bg-[#fff1f1]"
+              >
                 Read Article
-              </button>
+              </Link>
             </article>
           </div>
         </section>
@@ -85,11 +89,15 @@ export default function JournalClient() {
                   className="rounded-[28px] border border-white/10 bg-white/[0.04] p-6 transition hover:bg-white/[0.06]"
                 >
                   <div className="mb-4 overflow-hidden rounded-xl">
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="h-[200px] w-full object-cover"
-                    />
+                    <div className="relative h-[200px] w-full">
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover"
+                      />
+                    </div>
                   </div>
 
                   <p className="text-xs uppercase tracking-[0.22em] text-white/45">
@@ -106,7 +114,7 @@ export default function JournalClient() {
 
                   <Link
                     href={`/journal/${article.slug}`}
-                    className="mt-8 inline-block text-sm font-medium text-white/80 hover:text-red-200"
+                    className="mt-8 inline-block text-sm font-medium text-white/80 transition duration-200 hover:text-red-200"
                   >
                     Read Article →
                   </Link>
@@ -122,21 +130,39 @@ export default function JournalClient() {
               <h2 className="text-3xl font-bold tracking-tight">
                 Need help with bikes, gear or repairs?
               </h2>
+
               <p className="mt-3 text-white/70">
-                Speak directly with Alex Motosport for sourcing, workshop support or setup advice.
+                Speak directly with Alex Motosport for sourcing, workshop support
+                or setup advice.
               </p>
             </div>
 
             <button
               type="button"
               onClick={() => openEnquiryMenu(whatsappMessages.general)}
-              className="inline-flex rounded-lg bg-white px-6 py-3 font-medium text-black hover:bg-[#fff1f1]"
+              className="inline-flex rounded-lg bg-white px-6 py-3 font-medium text-black transition duration-200 hover:bg-[#fff1f1]"
             >
               Make an Enquiry
             </button>
           </div>
         </section>
       </main>
+
+      <div className="bg-black px-6 pb-10">
+        <div className="mx-auto max-w-7xl text-center">
+          <p className="text-[11px] tracking-[0.12em] text-white/30">
+            Digital experience by{" "}
+            <a
+              href="https://ultimateworkzcy.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition duration-200 hover:text-white/55"
+            >
+              UltimateWorkz
+            </a>
+          </p>
+        </div>
+      </div>
 
       <Footer />
     </>

@@ -54,12 +54,14 @@ export const GallerySlider = () => {
             <p className="text-xs uppercase tracking-[0.28em] text-white/45">
               Store Gallery
             </p>
+
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-5xl">
               Details From Inside Alex Motosport
             </h2>
+
             <p className="mt-5 max-w-lg text-sm leading-relaxed text-white/65 md:text-base">
-              A closer look at bikes, riding gear, accessories and in-store details from the
-              Paphos store.
+              A closer look at bikes, riding gear, accessories and in-store
+              details from the Paphos store.
             </p>
 
             <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-6 md:mt-10 md:pt-8">
@@ -109,7 +111,6 @@ export const GallerySlider = () => {
                       src={currentImage.src}
                       alt={currentImage.alt}
                       fill
-                      priority
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover transition duration-500 group-hover:scale-[1.01]"
                     />
@@ -147,4 +148,4 @@ export const GallerySlider = () => {
       )}
     </section>
   );
-};
+}

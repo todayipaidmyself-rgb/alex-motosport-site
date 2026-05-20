@@ -55,9 +55,11 @@ export const InsideAlexMotosport = () => {
           <h2 className="mt-5 text-4xl font-bold tracking-tighter md:text-5xl">
             Inside Alex Motosport
           </h2>
+
           <p className="mx-auto mt-5 max-w-2xl text-lg text-white/70">
-            Visit our Paphos-based store for Kayo bikes, helmets, riding gear, parts and
-            accessories — with local support and sourcing through trusted suppliers.
+            Visit our Paphos-based store for Kayo bikes, helmets, riding gear,
+            parts and accessories, with local support and sourcing through
+            trusted suppliers.
           </p>
         </div>
 
@@ -79,10 +81,14 @@ export const InsideAlexMotosport = () => {
                   <p className="text-xs uppercase tracking-[0.28em] text-white/45">
                     Category {index + 1}
                   </p>
+
                   <p className="mt-3 text-2xl font-semibold tracking-tight text-white">
                     {item.title}
                   </p>
-                  <p className="mt-2 text-sm text-white/60">{item.caption}</p>
+
+                  <p className="mt-2 text-sm text-white/60">
+                    {item.caption}
+                  </p>
                 </button>
               ))}
             </div>
@@ -103,13 +109,19 @@ export const InsideAlexMotosport = () => {
                     src={activeItem.src}
                     alt={activeItem.alt}
                     fill
+                    sizes="(max-width: 768px) 100vw, 60vw"
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.82),rgba(0,0,0,0.24),transparent)]"></div>
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.16),transparent_42%)] opacity-80"></div>
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.12),transparent_42%)] opacity-70"></div>
+
+                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.82),rgba(0,0,0,0.24),transparent)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.16),transparent_42%)] opacity-80" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.12),transparent_42%)] opacity-70" />
+
                   <div className="absolute inset-x-0 bottom-0 z-10 p-8">
-                    <p className="text-xs uppercase tracking-[0.28em] text-white/45">Inside the store</p>
+                    <p className="text-xs uppercase tracking-[0.28em] text-white/45">
+                      Inside the store
+                    </p>
+
                     <p className="mt-3 text-3xl font-semibold tracking-tight text-white">
                       {activeItem.caption}
                     </p>
@@ -138,10 +150,12 @@ export const InsideAlexMotosport = () => {
                     <p className="text-xs uppercase tracking-[0.28em] text-white/45">
                       Category {index + 1}
                     </p>
+
                     <p className="mt-2 text-xl font-semibold tracking-tight text-white">
                       {item.title}
                     </p>
                   </div>
+
                   <span className="text-white/55">{isOpen ? "−" : "+"}</span>
                 </button>
 
@@ -155,10 +169,18 @@ export const InsideAlexMotosport = () => {
                     >
                       <div className="relative mt-3 overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(10,10,10,1),rgba(35,16,67,0.95),rgba(18,18,18,1))] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_40px_rgba(124,58,237,0.15)]">
                         <div className="relative aspect-[4/3]">
-                          <Image src={item.src} alt={item.alt} fill className="object-cover" />
-                          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.82),rgba(0,0,0,0.24),transparent)]"></div>
-                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.16),transparent_42%)] opacity-80"></div>
-                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.12),transparent_42%)] opacity-70"></div>
+                          <Image
+                            src={item.src}
+                            alt={item.alt}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-cover"
+                          />
+
+                          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.82),rgba(0,0,0,0.24),transparent)]" />
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.16),transparent_42%)] opacity-80" />
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.12),transparent_42%)] opacity-70" />
+
                           <div className="absolute inset-x-0 bottom-0 z-10 p-5">
                             <p className="text-lg font-semibold tracking-tight text-white">
                               {item.caption}
