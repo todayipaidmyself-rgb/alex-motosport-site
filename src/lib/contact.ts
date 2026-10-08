@@ -1,3 +1,24 @@
+export const BUSINESS_NAME = "Alex Motosport CY LTD";
+
+export const BUSINESS_ADDRESS = {
+  streetAddress: "47 Hellados Avenue, Shops 4–5",
+  addressLocality: "Paphos",
+  postalCode: "8020",
+  addressCountry: "Cyprus",
+} as const;
+
+export const BUSINESS_ADDRESS_LINES = [
+  BUSINESS_ADDRESS.streetAddress,
+  `${BUSINESS_ADDRESS.addressLocality} ${BUSINESS_ADDRESS.postalCode}`,
+  BUSINESS_ADDRESS.addressCountry,
+] as const;
+
+export const BUSINESS_PHONE_DISPLAY = "+357 26 270202";
+export const BUSINESS_PHONE_LINK = "tel:+35726270202";
+
+export const GOOGLE_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=Alex+Motosport+Hellados+47+Paphos";
+
 export const WHATSAPP_NUMBER = "35797975657";
 
 export const getWhatsAppUrl = (message: string) =>
@@ -15,6 +36,24 @@ export const whatsappMessages = {
 };
 
 export const OPEN_ENQUIRY_MENU_EVENT = "alex-open-enquiry-menu";
+
+export const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: BUSINESS_NAME,
+  url: "https://alexmotosport.com",
+  image: "https://alexmotosport.com/og-image.jpg",
+  telephone: BUSINESS_PHONE_DISPLAY,
+  hasMap: GOOGLE_MAPS_URL,
+  address: {
+    "@type": "PostalAddress",
+    ...BUSINESS_ADDRESS,
+  },
+  sameAs: [
+    "https://www.instagram.com/alex_motosport_cy/?igsh=NHN3b3U4OG5hc2ts",
+    "https://www.tiktok.com/@alexconstantinouwrx?_r=1&_t=ZN-95zf23qneH0",
+  ],
+} as const;
 
 export const openEnquiryMenu = (message: string) => {
   if (typeof window === "undefined") return;

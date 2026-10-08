@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { getWhatsAppUrl, whatsappMessages } from "@/lib/contact";
 
 export const Hero = () => {
   const rotatingLines = [
@@ -89,7 +90,7 @@ export const Hero = () => {
               </Link>
 
               <a
-                href="https://wa.me/35797975657"
+                href={getWhatsAppUrl(whatsappMessages.general)}
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-lg border border-white/20 bg-white/5 px-5 py-3 font-medium text-white transition duration-300 hover:border-[rgba(186,64,112,0.42)] hover:bg-white/10 hover:shadow-[0_0_24px_rgba(217,75,75,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"

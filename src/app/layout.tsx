@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import clsx from "clsx";
 import { Banner } from "@/sections/Banner";
 import { Navbar } from "@/sections/Navbar";
+import { localBusinessSchema } from "@/lib/contact";
 import "./globals.css";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
@@ -54,6 +55,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={clsx(dmSans.className, "antialiased")}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessSchema),
+          }}
+        />
         <Navbar />
         <Banner />
         {children}

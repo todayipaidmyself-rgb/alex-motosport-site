@@ -2,9 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import InstaIcon from "@/assets/icons/insta.svg";
 import TiktokIcon from "@/assets/icons/tiktok.svg";
-
-const mapsUrl =
-  "https://maps.google.com/?q=Agiou+Spyridonos+19,+Paphos+8021,+Cyprus";
+import {
+  BUSINESS_ADDRESS_LINES,
+  BUSINESS_PHONE_DISPLAY,
+  BUSINESS_PHONE_LINK,
+  GOOGLE_MAPS_URL,
+  getWhatsAppUrl,
+  whatsappMessages,
+} from "@/lib/contact";
 
 export const Footer = () => {
   return (
@@ -108,7 +113,7 @@ export const Footer = () => {
 
             {/* CENTER MAP CARD */}
             <a
-              href={mapsUrl}
+              href={GOOGLE_MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="group relative flex min-h-[320px] overflow-hidden rounded-[28px] border border-white/12 bg-[linear-gradient(135deg,rgba(14,14,16,1),rgba(22,18,30,0.96),rgba(14,14,16,1))] p-7 md:min-h-full md:p-8 text-left transition duration-300 hover:-translate-y-0.5 hover:border-white/20"
@@ -143,8 +148,9 @@ export const Footer = () => {
                   </div>
 
                   <div className="mt-6 space-y-2 text-base leading-relaxed text-white/85 md:text-lg">
-                    <p>Agiou Spyridonos 19, Shop 4</p>
-                    <p>Paphos 8021, Cyprus</p>
+                    {BUSINESS_ADDRESS_LINES.map((line) => (
+                      <p key={line}>{line}</p>
+                    ))}
                   </div>
                 </div>
 
@@ -169,17 +175,10 @@ export const Footer = () => {
 
               <div className="mt-5 space-y-3 text-white/72">
                 <a
-                  href="tel:+35726270202"
+                  href={BUSINESS_PHONE_LINK}
                   className="block transition duration-200 hover:text-white"
                 >
-                  +357 26 27 02 02
-                </a>
-
-                <a
-                  href="tel:+35797975657"
-                  className="block transition duration-200 hover:text-white"
-                >
-                  +357 97 97 56 57
+                  {BUSINESS_PHONE_DISPLAY}
                 </a>
 
                 <a
@@ -191,7 +190,7 @@ export const Footer = () => {
               </div>
 
               <a
-                href="https://wa.me/35797975657"
+                href={getWhatsAppUrl(whatsappMessages.general)}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-6 inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:-translate-y-0.5 hover:bg-[#fff1f1] hover:shadow-[0_6px_20px_rgba(0,0,0,0.25)]"
