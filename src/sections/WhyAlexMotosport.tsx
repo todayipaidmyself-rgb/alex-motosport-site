@@ -17,21 +17,31 @@ export const WhyAlexMotosport = () => {
   return (
     <section className="bg-black py-[56px] text-white md:py-[72px]">
       <div className="container">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl font-bold tracking-tighter md:text-5xl">Why Alex Motosport</h2>
-          <p className="mt-5 text-lg text-white/70">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm uppercase tracking-[0.3em] text-white/50">
+            Local Support
+          </p>
+          <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] md:text-5xl">
+            Why Alex Motosport
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-white/70 md:text-lg">
             One local point of contact for bikes, gear, repairs and sourcing support in Paphos.
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {reasons.map((reason) => (
+        <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {reasons.map((reason, index) => (
             <article
               key={reason.title}
-              className="rounded-[28px] border border-white/10 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm transition duration-300 hover:border-[rgba(186,64,112,0.32)] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45),0_0_24px_rgba(168,85,247,0.08)]"
+              className="rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_70px_rgba(0,0,0,0.36)] transition duration-300 hover:border-white/20"
             >
-              <h3 className="text-2xl font-bold tracking-tight">{reason.title}</h3>
-              <p className="mt-4 text-white/70">{reason.text}</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-white/35">
+                0{index + 1}
+              </p>
+              <h3 className="mt-4 text-2xl font-semibold tracking-tight text-white">
+                {reason.title}
+              </h3>
+              <p className="mt-4 text-white/68">{reason.text}</p>
             </article>
           ))}
         </div>

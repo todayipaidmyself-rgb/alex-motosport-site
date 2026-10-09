@@ -1,138 +1,190 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useId } from "react";
 import Image from "next/image";
-import { getWhatsAppUrl, openEnquiryMenu, whatsappMessages } from "@/lib/contact";
-
-const slides = [
-  {
-    label: "BIKES & GEAR",
-    title: "Kayo Bikes, Gear & Parts in Paphos",
-    text: "Explore Kayo bikes, helmets, riding gear, parts and accessories available through Alex Motosport.",
-    buttonLabel: "Ask Alex on WhatsApp",
-    action: "whatsapp",
-    whatsappMessage: whatsappMessages.bikesGear,
-    image: "/images/gallery/bikes-and-gear-pics-banner-hero.webp",
-    imagePosition: "center center",
-  },
-  {
-    label: "LOCAL SOURCING",
-    title: "Seen It on Motorace? We’ll Help You Source It.",
-    text: "Send Alex Motosport the product link and we’ll help confirm availability, pricing and local support.",
-    buttonLabel: "Make an Enquiry",
-    action: "enquiry",
-    enquiryMessage: whatsappMessages.sourcing,
-    image: "/images/editorial/alex-hero-coastal-road-ride.webp",
-    imagePosition: "center center",
-  },
-  {
-    label: "RIDING ESSENTIALS",
-    title: "Gear Built for Road, Track & Dirt",
-    text: "Helmets, gloves, jackets and protection options sourced for riders across Cyprus.",
-    buttonLabel: "Ask Alex on WhatsApp",
-    action: "whatsapp",
-    whatsappMessage: whatsappMessages.bikesGear,
-    image: "/images/editorial/alex-gear-kit-studio-purple.webp",
-    imagePosition: "center center",
-  },
-] as const;
-
-const AUTO_ADVANCE_MS = 5500;
-
-const ctaClassName =
-  "mt-6 inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:bg-[#fff1f1] hover:shadow-[0_0_24px_rgba(217,75,75,0.24),0_0_32px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black";
+import Link from "next/link";
+import { useReducedMotion } from "framer-motion";
+import { getWhatsAppUrl, whatsappMessages } from "@/lib/contact";
+import {
+  bikesGearPrimaryButtonClassName,
+  bikesGearSecondaryButtonClassName,
+} from "@/lib/bikesGearUi";
 
 export const BikesGearHeroSlider = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeSlide = slides[activeIndex];
-
-  useEffect(() => {
-    const intervalId = window.setInterval(() => {
-      setActiveIndex((currentIndex) => (currentIndex + 1) % slides.length);
-    }, AUTO_ADVANCE_MS);
-
-    return () => window.clearInterval(intervalId);
-  }, []);
+  const shouldReduceMotion = useReducedMotion();
+  const gradientId = useId().replace(/:/g, "");
 
   return (
-    <section className="bg-black py-10 text-white md:py-14">
-      <div className="mx-auto max-w-[1440px] px-0 md:px-4">
-        <div className="overflow-hidden rounded-none border-y border-white/10 bg-black shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_32px_90px_rgba(0,0,0,0.45)] md:rounded-[32px] md:border">
-          <div className="relative h-[62vh] min-h-[480px] bg-[#050507] md:h-[72vh] md:min-h-[680px]">
-            {slides.map((slide, index) => {
-              const isActive = index === activeIndex;
+    <section className="bg-black pb-5 pt-8 text-white md:pb-8 md:pt-10">
+      <div className="container">
+        <div className="overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_36px_100px_rgba(0,0,0,0.42)]">
+          <div className="grid items-stretch gap-0 lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="relative p-6 sm:p-8 md:p-10 lg:p-12">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(183,148,244,0.18),transparent_38%)]" />
+              <div className="absolute inset-y-0 right-0 hidden w-px bg-white/8 lg:block" />
 
-              return (
-                <div
-                  key={slide.title}
-                  className={`absolute inset-0 transition-opacity duration-700 ${
-                    isActive ? "opacity-100" : "pointer-events-none opacity-0"
-                  }`}
-                >
-                  <Image
-                    src={slide.image}
-                    alt={slide.title}
-                    fill
-                    priority={index === 0}
-                    sizes="100vw"
-                    className="object-cover"
-                    style={{ objectPosition: slide.imagePosition }}
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.82),rgba(0,0,0,0.45),rgba(0,0,0,0.18))]" />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(168,85,247,0.14),transparent_38%)]" />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.14),transparent_34%)]" />
-                </div>
-              );
-            })}
-
-            <div className="absolute inset-x-0 bottom-0 z-10 p-6 md:p-8">
-              <div className="max-w-2xl">
-                <p className="text-xs uppercase tracking-[0.28em] text-white/55">
-                  {activeSlide.label}
+              <div className="relative max-w-xl">
+                <p className="text-xs uppercase tracking-[0.3em] text-white/50">
+                  Bikes &amp; Gear
                 </p>
-                <h1 className="mt-3 text-4xl font-bold tracking-tighter md:text-6xl">
-                  {activeSlide.title}
+
+                <h1 className="mt-4 max-w-lg text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">
+                  Bikes, gear and support for your next ride.
                 </h1>
-                <p className="mt-4 max-w-xl text-sm text-white/75 md:text-lg">
-                  {activeSlide.text}
+
+                <p className="mt-6 max-w-lg text-base leading-relaxed text-white/70 md:text-lg">
+                  Explore Kayo bikes, helmets, riding gear and sourcing support with
+                  Alex Motosport in Paphos.
                 </p>
 
-                {activeSlide.action === "enquiry" ? (
-                  <button
-                    type="button"
-                    onClick={() => openEnquiryMenu(activeSlide.enquiryMessage)}
-                    className={ctaClassName}
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link
+                    href="#bike-range"
+                    className={bikesGearPrimaryButtonClassName}
                   >
-                    {activeSlide.buttonLabel}
-                  </button>
-                ) : (
+                    Browse Bikes
+                  </Link>
+
                   <a
-                    href={getWhatsAppUrl(activeSlide.whatsappMessage)}
+                    href={getWhatsAppUrl(whatsappMessages.bikesGear)}
                     target="_blank"
                     rel="noreferrer"
-                    className={ctaClassName}
+                    className={bikesGearPrimaryButtonClassName}
                   >
-                    {activeSlide.buttonLabel}
+                    Ask Alex on WhatsApp
                   </a>
-                )}
-              </div>
+                </div>
 
-              <div className="mt-6 flex items-center gap-2 md:mt-8">
-                {slides.map((slide, index) => (
-                  <button
-                    key={slide.label}
-                    type="button"
-                    aria-label={`View slide ${index + 1}`}
-                    onClick={() => setActiveIndex(index)}
-                    className={`rounded-full transition-all duration-300 ${
-                      index === activeIndex
-                        ? "h-3 w-10 bg-white"
-                        : "h-3 w-3 bg-white/35 hover:bg-white/55"
-                    }`}
-                  />
-                ))}
+                <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                  {[
+                    "Kayo bikes in Paphos",
+                    "Price on enquiry",
+                    "Availability confirmed directly",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-white/72"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/55">
+                  <Link
+                    href="#gear-accessories"
+                    className="transition duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  >
+                    Explore gear &amp; accessories
+                  </Link>
+                  <Link
+                    href="#repairs-support"
+                    className="transition duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  >
+                    Repairs &amp; servicing
+                  </Link>
+                  <Link
+                    href="#bike-range"
+                    className={`${bikesGearSecondaryButtonClassName} text-sm`}
+                  >
+                    Enquiry-based availability
+                  </Link>
+                </div>
               </div>
             </div>
+
+            <div className="relative min-h-[360px] sm:min-h-[460px] lg:min-h-full">
+              <Image
+                src="/images/gallery/bikes-and-gear-pics-banner-hero.webp"
+                alt="Alex Motosport bikes and gear showroom selection"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 56vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.62),rgba(0,0,0,0.2))]" />
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.46),transparent_40%)] lg:hidden" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(183,148,244,0.14),transparent_34%)]" />
+
+              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                <div className="max-w-md rounded-[28px] border border-white/10 bg-black/45 p-5 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-sm">
+                  <p className="text-xs uppercase tracking-[0.28em] text-white/45">
+                    Showroom Focus
+                  </p>
+                  <p className="mt-3 text-2xl font-semibold tracking-tight text-white">
+                    A more focused way to compare bikes, gear and next steps.
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-white/65">
+                    Start with the latest additions, then move through the wider Kayo
+                    range, gear and local support.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative overflow-hidden border-t border-white/10 bg-[linear-gradient(180deg,rgba(18,18,22,1),rgba(30,22,44,1))] px-4 py-7 sm:px-6 md:px-8 md:py-8">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(183,148,244,0.1),transparent_46%)]" />
+
+            <svg
+              aria-hidden="true"
+              className="pointer-events-none relative block h-[92px] w-full sm:h-[112px] md:h-[128px]"
+              viewBox="0 0 1600 220"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <defs>
+                <linearGradient id={`${gradientId}-hero-ride`} x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="rgba(183,148,244,0)" />
+                  <stop offset="44%" stopColor="rgba(183,148,244,0.04)" />
+                  <stop offset="50%" stopColor="rgba(255,255,255,0.72)" />
+                  <stop offset="56%" stopColor="rgba(183,148,244,0.22)" />
+                  <stop offset="100%" stopColor="rgba(183,148,244,0)" />
+                  {shouldReduceMotion ? null : (
+                    <animateTransform
+                      attributeName="gradientTransform"
+                      type="translate"
+                      from="-1 0"
+                      to="1 0"
+                      dur="8s"
+                      repeatCount="indefinite"
+                    />
+                  )}
+                </linearGradient>
+              </defs>
+
+              <text
+                x="50%"
+                y="50%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fill="transparent"
+                stroke="rgba(255,255,255,0.15)"
+                strokeWidth="1.4"
+                fontSize="224"
+                fontWeight="700"
+                letterSpacing="20"
+              >
+                RIDE
+              </text>
+
+              {shouldReduceMotion ? null : (
+                <text
+                  x="50%"
+                  y="50%"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fill="transparent"
+                  stroke={`url(#${gradientId}-hero-ride)`}
+                  strokeWidth="2.2"
+                  fontSize="224"
+                  fontWeight="700"
+                  letterSpacing="20"
+                  opacity="0.72"
+                >
+                  RIDE
+                </text>
+              )}
+            </svg>
           </div>
         </div>
       </div>

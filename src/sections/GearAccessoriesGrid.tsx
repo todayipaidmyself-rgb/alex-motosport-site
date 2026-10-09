@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FadeIn } from "@/components/FadeIn";
 import { catalog } from "@/data/catalog";
+import { bikesGearPrimaryButtonClassName } from "@/lib/bikesGearUi";
 import { openEnquiryMenu, whatsappMessages } from "@/lib/contact";
 
 const gearCategories = [
@@ -25,58 +26,83 @@ const gearCategories = [
 
 export const GearAccessoriesGrid = () => {
   return (
-    <section className="bg-black py-[72px] text-white md:py-24">
+    <section
+      id="gear-accessories"
+      className="bg-[linear-gradient(to_bottom,#000000 0%,#120a1e 20%,#000000 100%)] py-[52px] text-white md:py-16"
+    >
       <FadeIn>
         <div className="container">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-4xl font-bold tracking-tighter md:text-5xl">
-              Gear & Accessories
-            </h2>
-            <p className="mt-5 text-lg text-white/70">
-              Browse core riding essentials and support items that Alex Motosport can help source
-              locally through trusted partners.
-            </p>
-            <p className="mt-6 text-white/70">
-              Essential riding gear and accessories, sourced locally through trusted partners in
-              Cyprus.
-            </p>
-          </div>
+          <div className="mx-auto max-w-[1320px] rounded-[32px] border border-white/8 bg-[#121215] px-5 py-7 shadow-[0_24px_80px_rgba(0,0,0,0.28)] md:px-8 md:py-9">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm uppercase tracking-[0.3em] text-white/42">
+                Beyond The Bike
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-white/62 md:text-lg">
+                Continue into rider essentials, helmets and everyday parts with the same
+                local sourcing support.
+              </p>
+            </div>
 
-          <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {gearCategories.map((category) => (
-              <article
-                key={category.title}
-                className="group rounded-3xl border border-white/10 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[rgba(186,64,112,0.38)] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45),0_0_36px_rgba(217,75,75,0.08)]"
-              >
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(10,10,10,1),rgba(35,16,67,0.95),rgba(18,18,18,1))] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_40px_rgba(124,58,237,0.15)] transition duration-300 group-hover:border-[rgba(186,64,112,0.34)]">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.18),transparent_45%)] opacity-80 transition duration-300 group-hover:opacity-100"></div>
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(217,75,75,0.12),transparent_42%)] opacity-70 transition duration-300 group-hover:opacity-100"></div>
+            <div className="mx-auto mt-8 max-w-3xl text-center">
+              <p className="text-sm uppercase tracking-[0.3em] text-white/50">
+                Riding Essentials
+              </p>
+              <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl">
+                Gear & Accessories
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-white/70 md:text-lg">
+                Browse core riding essentials and support items that Alex Motosport can help source
+                locally through trusted partners.
+              </p>
+              <p className="mt-5 text-white/60">
+                Essential riding gear and accessories, sourced locally through trusted partners in
+                Cyprus.
+              </p>
+            </div>
 
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={category.image}
-                      alt={category.title}
-                      width={600}
-                      height={400}
-                      className="h-full w-full rounded-xl object-cover transition duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <h3 className="text-2xl font-bold tracking-tight">{category.title}</h3>
-                  <p className="mt-3 text-white/65">{category.copy}</p>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => openEnquiryMenu(whatsappMessages.bikesGear)}
-                  className="mt-6 inline-flex rounded-lg bg-white px-5 py-3 font-medium text-black transition duration-300 hover:-translate-y-0.5 hover:bg-[#fff1f1] hover:shadow-[0_6px_20px_rgba(0,0,0,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d94b4b]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+              {gearCategories.map((category) => (
+                <article
+                  key={category.title}
+                  className="group flex h-full flex-col overflow-hidden rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,#16161b,#0f0f13)] shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_72px_rgba(0,0,0,0.34)] transition duration-300 hover:border-white/20"
                 >
-                  Make an Enquiry
-                </button>
-              </article>
-            ))}
+                  <div className="relative border-b border-white/10 bg-[linear-gradient(180deg,rgba(24,24,28,1),rgba(12,12,16,1))]">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(183,148,244,0.14),transparent_40%)]" />
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#f1f2f5]">
+                      <Image
+                        src={category.image}
+                        alt={category.title}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 33vw"
+                        className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-6">
+                    <p className="text-xs uppercase tracking-[0.24em] text-white/40">
+                      Category
+                    </p>
+                    <h3 className="mt-3 text-2xl font-semibold tracking-tight text-white">
+                      {category.title}
+                    </h3>
+                    <p className="mt-4 flex-1 text-sm leading-relaxed text-white/65 md:text-[15px]">
+                      {category.copy}
+                    </p>
+
+                    <div className="mt-6 border-t border-white/10 pt-5">
+                      <button
+                        type="button"
+                        onClick={() => openEnquiryMenu(whatsappMessages.bikesGear)}
+                        className={`${bikesGearPrimaryButtonClassName} w-full`}
+                      >
+                        Make an Enquiry
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </FadeIn>

@@ -38,7 +38,7 @@ const faqSchema = {
 
 export const BikesGearFAQs = () => {
   return (
-    <section className="bg-[linear-gradient(to_bottom,#000,#160a2d_40%,#000)] py-[72px] text-white md:py-24">
+    <section className="bg-black py-[72px] text-white md:py-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -46,17 +46,17 @@ export const BikesGearFAQs = () => {
 
       <div className="container">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm uppercase tracking-[0.3em] text-white/55">FAQ</p>
-          <h2 className="mt-5 text-4xl font-bold tracking-tighter md:text-5xl">
+          <p className="text-sm uppercase tracking-[0.3em] text-white/50">FAQ</p>
+          <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] md:text-5xl">
             Bikes & Gear Questions
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-white/70">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/68 md:text-lg">
             Quick answers about Kayo bikes, riding gear, accessories and local sourcing
             support from Alex Motosport in Paphos.
           </p>
         </div>
 
-        <div className="mx-auto mt-12 max-w-3xl rounded-[32px] border border-white/10 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] px-6 py-4 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm md:px-8">
+        <div className="mx-auto mt-12 max-w-3xl rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] px-6 py-4 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.4)] md:px-8">
           {items.map(({ question, answer }) => (
             <AccordionItem key={question} question={question} answer={answer} />
           ))}

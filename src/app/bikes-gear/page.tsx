@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { BikesGearFAQs } from "@/sections/BikesGearFAQs";
 import { BikesGearHeroSlider } from "@/sections/BikesGearHeroSlider";
+import { BikesGearTrustStrip } from "@/sections/BikesGearTrustStrip";
 import { CustomSourcingCTA } from "@/sections/CustomSourcingCTA";
 import { Footer } from "@/sections/Footer";
 import { GearAccessoriesGrid } from "@/sections/GearAccessoriesGrid";
@@ -22,9 +23,10 @@ export default function BikesAndGearPage() {
   return (
     <main>
       <BikesGearHeroSlider />
-      <WhyAlexMotosport />
+      <BikesGearTrustStrip />
       <KayoBikesGrid />
       <GearAccessoriesGrid />
+      <WhyAlexMotosport />
       <RepairsServiceSection />
       <CustomSourcingCTA />
       <BikesGearFAQs />
