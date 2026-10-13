@@ -1,12 +1,9 @@
 import type { MetadataRoute } from "next";
+import { articles } from "@/data/journal";
 
 const baseUrl = "https://alexmotosport.com";
 
-const journalSlugs = [
-  "best-dirt-bikes-cyprus",
-  "where-to-ride-cyprus",
-  "motorbike-repairs-cyprus",
-];
+
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -30,9 +27,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.7,
     },
-    ...journalSlugs.map((slug) => ({
-      url: `${baseUrl}/journal/${slug}`,
-      lastModified: now,
+    ...articles.map((article) => ({
+      url: `${baseUrl}/journal/${article.slug}`,
+      lastModified: article.date ? new Date(article.date) : now,
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),

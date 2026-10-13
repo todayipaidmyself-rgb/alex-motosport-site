@@ -95,7 +95,7 @@ export const BikesGearHeroSlider = () => {
 
             <div className="relative min-h-[360px] sm:min-h-[460px] lg:min-h-full">
               <Image
-                src="/images/gallery/bikes-and-gear-pics-banner-hero.webp"
+                src="/images/shop-october/white-bike.webp"
                 alt="Alex Motosport bikes and gear showroom selection"
                 fill
                 priority

@@ -6,37 +6,9 @@ import Link from "next/link";
 import { openEnquiryMenu, whatsappMessages } from "@/lib/contact";
 import { Footer } from "@/sections/Footer";
 
-const articles = [
-  {
-    slug: "best-dirt-bikes-cyprus",
-    category: "Buying Guide",
-    title: "Best Dirt Bikes for Beginners in Cyprus",
-    excerpt: "A practical guide to choosing your first dirt bike in Cyprus.",
-    image: "/images/editorial/alex-hero-studio-bike.webp",
-    content:
-      "Choosing your first dirt bike in Cyprus depends on terrain, experience level and usage. Kayo bikes are a strong entry point due to reliability and price point.",
-  },
-  {
-    slug: "where-to-ride-cyprus",
-    category: "Riding Guide",
-    title: "Where to Ride Motorbikes in Paphos & Cyprus",
-    excerpt: "Explore the best places to ride across Cyprus.",
-    image: "/images/editorial/alex-action-dirt-ride.webp",
-    content:
-      "Cyprus offers a mix of coastal roads and off-road trails ideal for riders of all levels.",
-  },
-  {
-    slug: "motorbike-repairs-cyprus",
-    category: "Workshop Advice",
-    title: "Motorbike Repairs in Cyprus: Common Issues & What to Avoid",
-    excerpt: "Common repair issues and how to avoid costly mistakes.",
-    image: "/images/editorial/alex-bike-engine-action-detail.webp",
-    content:
-      "Heat, dust and terrain in Cyprus create unique wear conditions that riders need to manage properly.",
-  },
-];
+type ArticleSummary = { slug: string; category: string; title: string; excerpt: string; image: string; imageAlt?: string };
 
-export default function JournalClient() {
+export default function JournalClient({ articles }: { articles: ArticleSummary[] }) {
   const featuredArticle = articles[0];
 
   return (
@@ -92,7 +64,7 @@ export default function JournalClient() {
                     <div className="relative h-[200px] w-full">
                       <Image
                         src={article.image}
-                        alt={article.title}
+                        alt={article.imageAlt ?? article.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover"

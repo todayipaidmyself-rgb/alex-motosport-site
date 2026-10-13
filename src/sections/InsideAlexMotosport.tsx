@@ -2,46 +2,17 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { shopPhotos } from "@/data/shopPhotos";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 
 const spotlightItems = [
-  {
-    title: "Storefront",
-    caption: "Paphos Storefront",
-    src: "/images/alex-motosport-images/alex-motosport-store-front-main.webp",
-    alt: "Paphos Storefront",
-  },
-  {
-    title: "Bike Display",
-    caption: "Bikes In Store",
-    src: "/images/alex-motosport-images/alex-motosport-bike-main.webp",
-    alt: "Bikes In Store",
-  },
-  {
-    title: "Helmets",
-    caption: "Helmets & Gear",
-    src: "/images/alex-motosport-images/alex-motosport-helmet.webp",
-    alt: "Helmets & Gear",
-  },
-  {
-    title: "Parts",
-    caption: "Parts & Accessories",
-    src: "/images/alex-motosport-images/alex-motosport-accessories.webp",
-    alt: "Parts & Accessories",
-  },
-  {
-    title: "Bike Detail",
-    caption: "Bike Detail",
-    src: "/images/alex-motosport-images/alex-motosport-bike-wheel-angle.webp",
-    alt: "Bike Detail",
-  },
-  {
-    title: "Accessories",
-    caption: "Rider Accessories",
-    src: "/images/alex-motosport-images/alex-moto-accessories.webp",
-    alt: "Rider Accessories",
-  },
+  { title: "Storefront", caption: "Our New Paphos Store", ...shopPhotos["storefront"] },
+  { title: "Bike Display", caption: "Bikes In Store", ...shopPhotos["bike-lineup"] },
+  { title: "Helmets", caption: "Helmets & Gear", ...shopPhotos["helmets"] },
+  { title: "Parts", caption: "Parts & Accessories", ...shopPhotos["parts"] },
+  { title: "Bike Detail", caption: "A Closer Look", ...shopPhotos["wheel-detail"] },
+  { title: "Riding Gear", caption: "Jackets & Protection", ...shopPhotos["jackets"] },
 ];
 
 export const InsideAlexMotosport = () => {
@@ -63,7 +34,7 @@ export const InsideAlexMotosport = () => {
           </p>
         </div>
 
-        <div className="mt-10 hidden gap-6 md:grid md:grid-cols-[0.8fr_1.2fr] md:items-stretch">
+        <div className="mt-10 hidden gap-6 md:grid md:grid-cols-[0.8fr_1.2fr] md:items-start">
           <div className="rounded-[28px] border border-white/10 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-3 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm">
             <div className="flex h-full flex-col gap-2 rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(8,8,10,1),rgba(28,18,50,0.94),rgba(12,12,14,1))] p-2">
               {spotlightItems.map((item, index) => (
@@ -94,8 +65,8 @@ export const InsideAlexMotosport = () => {
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-3 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm">
-            <div className="relative h-full min-h-[640px] overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(10,10,10,1),rgba(35,16,67,0.95),rgba(18,18,18,1))] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_40px_rgba(124,58,237,0.15)]">
+          <div className="relative md:sticky md:top-24 overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-3 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm">
+            <div className="relative aspect-[3/2] overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(10,10,10,1),rgba(35,16,67,0.95),rgba(18,18,18,1))] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_40px_rgba(124,58,237,0.15)]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeItem.src}
@@ -103,14 +74,14 @@ export const InsideAlexMotosport = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.99 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="relative h-full w-full"
+                  className="absolute inset-0"
                 >
                   <Image
                     src={activeItem.src}
                     alt={activeItem.alt}
                     fill
                     sizes="(max-width: 768px) 100vw, 60vw"
-                    className="object-cover"
+                    className="object-contain"
                   />
 
                   <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.82),rgba(0,0,0,0.24),transparent)]" />

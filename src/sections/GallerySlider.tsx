@@ -1,13 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { shopGallery } from "@/data/shopPhotos";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const galleryImages = Array.from({ length: 22 }, (_, index) => ({
-  src: `/images/gallery/gallery-pictures${index + 1}.webp`,
-  alt: `Alex Motosport gallery image ${index + 1}`,
-}));
+const galleryImages = shopGallery;
 
 export const GallerySlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -97,7 +95,7 @@ export const GallerySlider = () => {
               onClick={() => setActiveImage(currentImage.src)}
               className="group relative block w-full text-left"
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[24px] border border-white/10 bg-[#050505] md:aspect-[3/4]">
+              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[24px] border border-white/10 bg-[#050505] md:aspect-[3/2]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentImage.src}

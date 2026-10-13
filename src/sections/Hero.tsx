@@ -32,7 +32,7 @@ export const Hero = () => {
         muted
         loop
         playsInline
-        poster="/images/alex-motos-gear-hero.webp"
+        poster="/images/shop-october/bike-lineup.webp"
         preload="metadata"
       >
         <source src="/videos/alex-motos-hero-video.mp4" type="video/mp4" />

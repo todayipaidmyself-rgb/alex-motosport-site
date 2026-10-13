@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { articles } from "@/data/journal";
 
 import JournalClient from "@/app/journal/JournalClient";
 
@@ -18,5 +19,5 @@ export const metadata: Metadata = {
 };
 
 export default function JournalPage() {
-  return <JournalClient />;
+  return <JournalClient articles={articles.map(({ slug, category, title, excerpt, image, imageAlt }) => ({ slug, category, title, excerpt, image, imageAlt }))} />;
 }
